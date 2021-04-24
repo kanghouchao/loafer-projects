@@ -24,6 +24,6 @@ hs_err_pid*
 
 # Ignore idea config
 .idea
-.iml
+*.iml
 #
 targe/
