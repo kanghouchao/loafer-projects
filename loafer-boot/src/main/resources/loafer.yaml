@@ -10,11 +10,22 @@ system:
 spring:
   banner:
     location: classpath:loafer-banner.txt
-  loafer:
-    async:
-      enabled: true
-      queue-capacity: 500
-      thread-name-prefix: async-loafer
-      keep-alive-seconds: 30
-      allow-core-thread-time-out: false
-      wait-for-tasks-to-complete-on-shutdown: true
+  task:
+    execution:
+      pool:
+        core-size: 8
+        max-size: 64
+        keep-alive: 15s
+        allow-core-thread-timeout: false
+        queue-capacity: 256
+      thread-name-prefix: loaf-task-
+      shutdown:
+        await-termination: true
+        await-termination-period: 30s
+    scheduling:
+      thread-name-prefix: loaf-scheduling
+      pool:
+        size: 2
+      shutdown:
+        await-termination: true
+        await-termination-period: 30s
